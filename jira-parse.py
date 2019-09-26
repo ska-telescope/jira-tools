@@ -1,6 +1,5 @@
 from jira import JIRA
 from collections import defaultdict, namedtuple
-import json # only for displaying output nicely
 from private_jira_password import my_auth
 ska_jira = JIRA('https://jira.skatelescope.org', auth=my_auth)
 
@@ -41,9 +40,10 @@ print("Starting with query {}".format(query))
 for o in objectives: 
     print("Crawling %s %s" % (o.fields.issuetype.name, o.key))
     all_issues[o.key] = MakeNamedTuple(o)
-    tree[o.key] = {} # make tree a defaultdict(defaultdict(list)) instead?
+    tree[o.key] = {}
     for ol in o.fields.issuelinks: # ol: "objective links"
         f = None
+        # these if statements are re-used below, TODO convert to a function 
         if str(getattr(ol, 'type', None))=='Parent/Child':
             if getattr(ol, 'outwardIssue', False):
                 f = ska_jira.issue(ol.outwardIssue.key)
@@ -70,6 +70,7 @@ for o in objectives:
 
 ### it would be a lot faster to test this if I wrote the dicts out here
 ### then read them in to run the below without crawling jira...
+### (i.e. split above/below into 2 python files and write/read or pipe the tree in between)
 
 # output
 # there must be a standard tree traversal function that I should be using here...

@@ -109,3 +109,5 @@ private_jira_password.py
 # intermediate output
 jira_parse_out.gv
 
+# output image
+jira-tree-diagram.png

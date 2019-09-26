@@ -56,5 +56,5 @@ Bunton, John	  8    6    2    3    0
 Chen, Yuqing	  4    4    0    4    4  
 Hampson, Grant	 13    9    8    7    3  
 Humphrey, David	  0    0    8    5    7  
-Troup, Euan	      0    2   15    9    0  
+Troup, Euan	  0    2   15    9    0  
 ```
